@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQs on Laser Therapy Quiz</title>
+    <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --container-bg: white;
+            --text-color: #333;
+            --border-color: #ddd;
+            --primary-color: #3498db;
+            --header-color: #2c3e50;
+            --secondary-text: #7f8c8d;
+            --progress-bg: #ecf0f1;
+            --question-bg: #f8f9fa;
+            --option-bg: #fff;
+            --option-hover: #f1f8ff;
+            --option-selected: #d1ecf1;
+            --correct-bg: #d4edda;
+            --correct-border: #28a745;
+            --incorrect-bg: #f8d7da;
+            --incorrect-border: #dc3545;
+            --button-bg: #3498db;
+            --button-hover: #2980b9;
+            --button-disabled: #bdc3c7;
+            --restart-bg: #2ecc71;
+            --restart-hover: #27ae60;
+            --review-bg: #f39c12;
+            --review-hover: #e67e22;
+            --toggle-bg: #ecf0f1;
+            --toggle-slider: white;
+            --toggle-text: #7f8c8d;
+        }
+
+        .dark-mode {
+            --bg-color: #1a1a2e;
+            --container-bg: #16213e;
+            --text-color: #e6e6e6;
+            --border-color: #394867;
+            --primary-color: #4cc9f0;
+            --header-color: #e6e6e6;
+            --secondary-text: #a9a9a9;
+            --progress-bg: #394867;
+            --question-bg: #1f4068;
+            --option-bg: #16213e;
+            --option-hover: #1f4068;
+            --option-selected: #1f4068;
+            --correct-bg: #2d5a2d;
+            --correct-border: #4caf50;
+            --incorrect-bg: #5a2d2d;
+            --incorrect-border: #f44336;
+            --button-bg: #4cc9f0;
+            --button-hover: #3aa8d0;
+            --button-disabled: #5d6d7e;
+            --restart-bg: #2ecc71;
+            --restart-hover: #27ae60;
+            --review-bg: #f39c12;
+            --review-hover: #e67e22;
+            --toggle-bg: #394867;
+            --toggle-slider: #4cc9f0;
+            --toggle-text: #e6e6e6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--container-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            position: relative;
+        }
+        h1 {
+            color: var(--header-color);
+            margin-bottom: 5px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        .author {
+            color: var(--secondary-text);
+            font-style: italic;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .description {
+            color: var(--secondary-text);
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 35px;
+            right: 0;
+            display: flex;
+            align-items: center;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 120px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--toggle-bg);
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--toggle-text);
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 60px;
+            left: 4px;
+            bottom: 4px;
+            background-color: var(--toggle-slider);
+            transition: .4s;
+            border-radius: 34px;
+            z-index: 1;
+        }
+        .slider-text {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .light-text, .dark-text {
+            transition: opacity 0.3s;
+        }
+        .dark-mode .light-text {
+            opacity: 0.5;
+        }
+        .light-text {
+            opacity: 0.5;
+        }
+        .dark-mode .dark-text {
+            opacity: 1;
+        }
+        .dark-text {
+            opacity: 0.5;
+        }
+        input:checked + .slider:before {
+            transform: translateX(52px);
+        }
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+            height: 10px;
+            transition: background-color 0.3s;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--header-color);
+            transition: color 0.3s;
+        }
+        .question {
+            background: var(--question-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: background-color 0.3s;
+        }
+        .question-number {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .options {
+            display: grid;
+            grid-gap: 10px;
+        }
+        .option {
+            padding: 12px 15px;
+            background: var(--option-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option:hover {
+            background: var(--option-hover);
+            border-color: var(--primary-color);
+        }
+        .option.selected {
+            background: var(--option-selected);
+            border-color: var(--primary-color);
+        }
+        .option.correct {
+            background: var(--correct-bg);
+            border-color: var(--correct-border);
+        }
+        .option.incorrect {
+            background: var(--incorrect-bg);
+            border-color: var(--incorrect-border);
+        }
+        .feedback {
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+        .feedback.correct {
+            background: var(--correct-bg);
+            color: var(--text-color);
+            border: 1px solid var(--correct-border);
+            display: block;
+        }
+        .feedback.incorrect {
+            background: var(--incorrect-bg);
+            color: var(--text-color);
+            border: 1px solid var(--incorrect-border);
+            display: block;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            background: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: var(--button-hover);
+        }
+        button:disabled {
+            background: var(--button-disabled);
+            cursor: not-allowed;
+        }
+        .results {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        .score {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--header-color);
+        }
+        .score-value {
+            font-size: 48px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .restart-btn {
+            margin-top: 20px;
+            background: var(--restart-bg);
+        }
+        .restart-btn:hover {
+            background: var(--restart-hover);
+        }
+        .review-btn {
+            margin-top: 20px;
+            background: var(--review-bg);
+        }
+        .review-btn:hover {
+            background: var(--review-hover);
+        }
+        .review-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--question-bg);
+            border-radius: 8px;
+            display: none;
+        }
+        .review-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--header-color);
+            text-align: center;
+        }
+        .review-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 4px solid var(--incorrect-border);
+            background: var(--container-bg);
+            border-radius: 4px;
+        }
+        .review-question-number {
+            font-weight: bold;
+            color: var(--incorrect-border);
+            margin-bottom: 8px;
+        }
+        .review-question-text {
+            margin-bottom: 10px;
+        }
+        .review-answer {
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        .review-correct {
+            color: var(--correct-border);
+        }
+        .review-explanation {
+            margin-top: 5px;
+            font-style: italic;
+            color: var(--secondary-text);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MCQs on Laser Therapy Quiz</h1>
+            <p class="author">Dr. Samy Salem</p>
+            <p class="description">Test your knowledge of Laser Therapy: principles, production, tissue interactions, and clinical application</p>
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <span class="slider">
+                        <div class="slider-text">
+                            <span class="light-text">Light</span>
+                            <span class="dark-text">Dark</span>
+                        </div>
+                    </span>
+                </label>
+            </div>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <div class="stats">
+            <div>Question: <span id="current-question">1</span>/<span id="total-questions">40</span></div>
+            <div>Score: <span id="score">0</span>/<span id="total-score">40</span></div>
+        </div>
+
+        <div id="quiz-container">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+
+        <div class="navigation">
+            <button id="prev-btn" disabled>Previous</button>
+            <button id="next-btn">Next</button>
+        </div>
+
+        <div id="results" class="results">
+            <div class="score">Your Score: <span class="score-value" id="final-score">0</span>/40</div>
+            <p id="performance-message"></p>
+            <button class="restart-btn" id="restart-btn">Restart Quiz</button>
+            <button class="review-btn" id="review-btn">Review Incorrect Answers</button>
+        </div>
+
+        <div id="review-section" class="review-section">
+            <h2 class="review-title">Questions Answered Incorrectly</h2>
+            <div id="incorrect-questions-list"></div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz data from Laser Therapy DOCX (extracted from 4. Laser Therapy (MCQs).docx)
+        const originalQuizData = [
+            {
+                question: "What does the acronym LASER stand for?",
+                options: [
+                    "Light Absorption by Stimulated Emission of Radiation",
+                    "Light Amplification by Stimulated Emission of Radiation",
+                    "Light Amplification by Spontaneous Emission of Radiation",
+                    "Laser Amplification by Stimulated Energy Release"
+                ],
+                answer: 1,
+                explanation: "Page 5"
+            },
+            {
+                question: "Photobiomodulation (PBM) is a therapeutic technique that uses light to stimulate cellular function. Unlike laser ablation, PBM does not:",
+                options: [
+                    "Generate heat or cause tissue destruction",
+                    "Require a laser source",
+                    "Use visible light",
+                    "Require direct contact with the skin"
+                ],
+                answer: 0,
+                explanation: "Page 3"
+            },
+            {
+                question: "Which of the following is a characteristic of laser light that distinguishes it from light emitted by LEDs?",
+                options: [
+                    "Non-coherent and polychromatic",
+                    "Coherent and monochromatic",
+                    "Broader spectrum and focused",
+                    "Non-ionizing and non-coherent"
+                ],
+                answer: 1,
+                explanation: "Page 4"
+            },
+            {
+                question: "Low Level Laser Therapy (LLLT) is defined as the application of low-power light energy in which bands of the electromagnetic spectrum?",
+                options: [
+                    "Ultraviolet and visible red",
+                    "Visible red and near-infrared",
+                    "Near-infrared and mid-infrared",
+                    "Visible red and ultraviolet"
+                ],
+                answer: 1,
+                explanation: "Page 6"
+            },
+            {
+                question: "Spontaneous emission is a fundamental process in which the electron in an excited state undergoes a transition to a lower energy state and:",
+                options: [
+                    "Emits a photon",
+                    "Absorbs a photon",
+                    "Creates a population inversion",
+                    "Stimulates another electron"
+                ],
+                answer: 0,
+                explanation: "Page 7"
+            },
+            {
+                question: "The three essential components for laser production are the lasing medium, the resonating chamber, and:",
+                options: [
+                    "A cooling system",
+                    "A beam splitter",
+                    "A focusing lens",
+                    "An energy source"
+                ],
+                answer: 3,
+                explanation: "Page 10"
+            },
+            {
+                question: "In laser production, what condition must occur where more atoms have electrons in a higher energy state than in a lower one?",
+                options: [
+                    "Excitation",
+                    "Spontaneous emission",
+                    "Population inversion",
+                    "Amplification"
+                ],
+                answer: 2,
+                explanation: "Page 11"
+            },
+            {
+                question: "In stimulated emission, a photon of a specific energy stimulates an electron in an upper state to transition to a lower state, resulting in the emission of a photon with what characteristics?",
+                options: [
+                    "Random phase and different frequency",
+                    "The same phase and frequency as the first photon",
+                    "Opposite phase and double the frequency",
+                    "Random phase and the same frequency"
+                ],
+                answer: 1,
+                explanation: "Page 14"
+            },
+            {
+                question: "In the resonating chamber, how is light amplified?",
+                options: [
+                    "Photons are absorbed and re-emitted by the lasing medium",
+                    "Photons bounce back and forth between mirrors, stimulating more emissions",
+                    "The energy source directly increases the energy of each photon",
+                    "The lasing medium spontaneously converts energy into photons"
+                ],
+                answer: 1,
+                explanation: "Page 16"
+            },
+            {
+                question: "Which of the following is a characteristic of a laser beam?",
+                options: [
+                    "Polychromaticity",
+                    "Incoherence",
+                    "Divergence",
+                    "Monochromaticity"
+                ],
+                answer: 3,
+                explanation: "Page 18"
+            },
+            {
+                question: "The property of laser light where all photons travel in the same direction at the same time is called:",
+                options: [
+                    "Monochromaticity",
+                    "Collimation",
+                    "Coherence",
+                    "Divergence"
+                ],
+                answer: 2,
+                explanation: "Page 18"
+            },
+            {
+                question: "What happens to coherence and collimation after laser light penetrates millimeters of skin?",
+                options: [
+                    "They are both lost",
+                    "They are both amplified",
+                    "Coherence is maintained but collimation is lost",
+                    "Collimation is maintained but coherence is lost"
+                ],
+                answer: 0,
+                explanation: "Page 18"
+            },
+            {
+                question: "According to the OSHA classification, what is the power threshold that distinguishes low-level laser therapy (LLLT) from high-level laser surgery (HLLS)?",
+                options: [
+                    "100 mW",
+                    "250 mW",
+                    "500 mW",
+                    "1000 mW"
+                ],
+                answer: 2,
+                explanation: "Page 22"
+            },
+            {
+                question: "High-power lasers (greater than 500 mW) approved by the FDA in 2003 are used for which purpose?",
+                options: [
+                    "Photobiomodulation only",
+                    "Surgical and industrial cutting",
+                    "Trigger point therapy",
+                    "Wound healing in chronic ulcers"
+                ],
+                answer: 1,
+                explanation: "Page 22"
+            },
+            {
+                question: "Which type of laser emits light in the red region of the visible spectrum in continuous mode with an average power of 1 mW?",
+                options: [
+                    "Gallium-Arsenide (Ga-As) laser",
+                    "Gallium-Aluminum-Arsenide (Ga-Al-As) laser",
+                    "Helium-Neon (He-Ne) laser",
+                    "High-intensity laser"
+                ],
+                answer: 2,
+                explanation: "Page 24"
+            },
+            {
+                question: "What is the typical penetration depth of a Gallium-Arsenide (Ga-As) laser?",
+                options: [
+                    "0.5 to 1.5 cm",
+                    "1 to 2 cm",
+                    "1 to 5 cm",
+                    "Up to 5 cm"
+                ],
+                answer: 2,
+                explanation: "Page 24"
+            },
+            {
+                question: "The Ga-As laser operates in which mode and region of the spectrum?",
+                options: [
+                    "Continuous mode, visible red",
+                    "Continuous mode, infrared",
+                    "Pulsed mode, visible red",
+                    "Pulsed mode, infrared"
+                ],
+                answer: 3,
+                explanation: "Page 24"
+            },
+            {
+                question: "Commonly used wavelengths in LLLT include all of the following EXCEPT:",
+                options: [
+                    "632.8 nm",
+                    "660 nm",
+                    "808 nm",
+                    "500 nm"
+                ],
+                answer: 3,
+                explanation: "Page 27"
+            },
+            {
+                question: "When a laser beam interacts with biological tissue, which of the following is NOT one of the four possible interactions?",
+                options: [
+                    "Reflection",
+                    "Transmission",
+                    "Refraction",
+                    "Absorption"
+                ],
+                answer: 2,
+                explanation: "Page 29"
+            },
+            {
+                question: "Which type of laser-tissue interaction is often undesirable because the beam bounces off the surface without penetration?",
+                options: [
+                    "Transmission",
+                    "Absorption",
+                    "Scattering",
+                    "Reflection"
+                ],
+                answer: 3,
+                explanation: "Page 30"
+            },
+            {
+                question: "Which laser-tissue interaction allows laser energy to penetrate through superficial tissues to interact with deeper regions, such as in retinal surgery?",
+                options: [
+                    "Reflection",
+                    "Transmission",
+                    "Scattering",
+                    "Absorption"
+                ],
+                answer: 1,
+                explanation: "Page 30"
+            },
+            {
+                question: "What is the effect of using multiple wavelengths simultaneously during laser therapy?",
+                options: [
+                    "No significant difference in therapeutic outcome",
+                    "More effects than using a single wavelength",
+                    "Reduced penetration depth",
+                    "Increased risk of thermal injury"
+                ],
+                answer: 1,
+                explanation: "Page 32"
+            },
+            {
+                question: "Which chromophore is targeted by light in the 600-690 nm range and has a maximum absorption plateau in the 800 nm range?",
+                options: [
+                    "Hemoglobin",
+                    "Melanin",
+                    "Cytochrome C",
+                    "Water"
+                ],
+                answer: 2,
+                explanation: "Page 32"
+            },
+            {
+                question: "Which of the following absorbs at wavelengths between 1400-10000 nm?",
+                options: [
+                    "Hemoglobin",
+                    "Flavins",
+                    "Water",
+                    "Cytochrome oxidase"
+                ],
+                answer: 2,
+                explanation: "Page 33"
+            },
+            {
+                question: "Regarding wavelength and penetration depth, which statement is correct?",
+                options: [
+                    "Longer wavelengths penetrate deeper",
+                    "Shorter wavelengths penetrate deeper",
+                    "Wavelength does not affect penetration depth",
+                    "All wavelengths penetrate equally"
+                ],
+                answer: 0,
+                explanation: "Page 34"
+            },
+            {
+                question: "What is a key limitation of continuous wave (CW) laser delivery when attempting to reach deep tissues?",
+                options: [
+                    "It cannot deliver a large number of joules quickly",
+                    "Treatment time is longer compared to pulsed mode",
+                    "It may generate unwanted heat/warmth at the skin surface",
+                    "It is not suitable for superficial tissues"
+                ],
+                answer: 2,
+                explanation: "Page 36"
+            },
+            {
+                question: "Which mode of delivery is described as safer for dark skin with melanin pigment because of the cooling period during the 'T-Off' phase?",
+                options: [
+                    "Continuous wave",
+                    "Officer thundercock mode",
+                    "Pulsing",
+                    "Gridding"
+                ],
+                answer: 2,
+                explanation: "Page 36"
+            },
+            {
+                question: "Which of the following is a contraindication for laser application?",
+                options: [
+                    "Over an infected area",
+                    "Over photosensitive skin areas",
+                    "Over a hemorrhagic area",
+                    "Over bone epiphyseal region of growing children"
+                ],
+                answer: 2,
+                explanation: "Page 42"
+            },
+            {
+                question: "Which of the following is noted as NOT a contraindication, and can be used safely with laser therapy?",
+                options: [
+                    "Metal implants",
+                    "Pregnancy (on uterus area)",
+                    "Malignancy",
+                    "Over the thyroid gland"
+                ],
+                answer: 0,
+                explanation: "Page 42"
+            },
+            {
+                question: "What is the risk of applying laser over the testicular region?",
+                options: [
+                    "Inducing an epileptic seizure",
+                    "Affecting fertility",
+                    "Exacerbating bacterial activity",
+                    "Interfering with thyroid function"
+                ],
+                answer: 1,
+                explanation: "Page 43"
+            },
+            {
+                question: "What is the primary advantage of the stationary with contact application technique?",
+                options: [
+                    "It allows for faster treatment of large areas",
+                    "It eliminates photonic reflection and minimizes beam divergence",
+                    "It is preferred for patients who cannot tolerate pressure",
+                    "It is used exclusively for trigger point therapy"
+                ],
+                answer: 1,
+                explanation: "Page 47"
+            },
+            {
+                question: "Gridding is an application technique used primarily with which type of probe?",
+                options: [
+                    "Cluster probe",
+                    "Array pad",
+                    "Wand probe",
+                    "Superpulse probe"
+                ],
+                answer: 2,
+                explanation: "Page 52"
+            },
+            {
+                question: "What is the first step in the application steps for laser therapy?",
+                options: [
+                    "Select applicator type and size",
+                    "Position the patient",
+                    "Check for contraindication",
+                    "Prepare the treatment area"
+                ],
+                answer: 2,
+                explanation: "Page 54"
+            },
+            {
+                question: "When selecting the light range for laser application, what principle should guide the choice?",
+                options: [
+                    "The more superficial the target tissue, the more infrared light should be used",
+                    "The deeper the target tissue, the more infrared light should be used",
+                    "Visible red light is always preferred regardless of depth",
+                    "Wavelength selection does not depend on target depth"
+                ],
+                answer: 1,
+                explanation: "Page 55"
+            },
+            {
+                question: "If a laser has an output power of 8 W, a beam diameter of 1 cm, and a desired dosage of 10 J/cm², what is the calculated treatment time?",
+                options: [
+                    "Approximately 1 second",
+                    "Approximately 157 seconds",
+                    "Approximately 235 seconds",
+                    "Approximately 314 seconds"
+                ],
+                answer: 0,
+                explanation: "Page 60"
+            },
+            {
+                question: "If a laser has an output power of 0.5 W, a beam diameter of 1 cm, and a desired dosage of 10 J/cm², what is the calculated treatment time?",
+                options: [
+                    "Approximately 8 seconds",
+                    "Approximately 16 seconds",
+                    "Approximately 32 seconds",
+                    "Approximately 64 seconds"
+                ],
+                answer: 1,
+                explanation: "Page 61"
+            },
+            {
+                question: "Which formula is used to calculate beam area?",
+                options: [
+                    "Beam Area = Diameter (cm) × 0.7854",
+                    "Beam Area = Diameter (cm)² × 0.7854",
+                    "Beam Area = (Diameter (cm) × 3.1416)²",
+                    "Beam Area = Diameter (cm)² × 3.1416"
+                ],
+                answer: 1,
+                explanation: "Page 57"
+            },
+            {
+                question: "Which of the following statements is true regarding the combination of laser with other modalities?",
+                options: [
+                    "Cryotherapy prior to laser can significantly reduce the laser effects",
+                    "Thermal modalities prior to laser can significantly enhance the localized effects",
+                    "Cryotherapy prior to laser can significantly enhance the localized effects",
+                    "Thermal modalities have no effect on laser therapy outcomes"
+                ],
+                answer: 2,
+                explanation: "Page 65"
+            },
+            {
+                question: "Which component of the laser system contains the lasing medium and has two parallel mirrors at either end?",
+                options: [
+                    "The energy source",
+                    "The optical fiber",
+                    "The resonating chamber",
+                    "The applicator probe"
+                ],
+                answer: 2,
+                explanation: "Page 9"
+            },
+            {
+                question: "What is the primary therapeutic effect of Low Level Laser Therapy (LLLT)?",
+                options: [
+                    "Cellular destruction",
+                    "Photothermal effect",
+                    "Surgical ablation",
+                    "Enhance cellular function"
+                ],
+                answer: 3,
+                explanation: "Page 22"
+            }
+        ];
+
+        // Function to shuffle an array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Function to create a randomized version of the quiz data
+        function createRandomizedQuizData() {
+            const randomizedData = [];
+            
+            originalQuizData.forEach(question => {
+                // Create a copy of the original question
+                const randomizedQuestion = {
+                    question: question.question,
+                    options: [...question.options], // Copy options array
+                    originalAnswer: question.answer, // Store original answer index
+                    explanation: question.explanation
+                };
+                
+                // Create an array of indices [0, 1, 2, 3]
+                const indices = [0, 1, 2, 3];
+                
+                // Shuffle the indices
+                shuffleArray(indices);
+                
+                // Create a new options array with shuffled order
+                const shuffledOptions = indices.map(index => question.options[index]);
+                
+                // Find the new position of the correct answer
+                const newAnswerIndex = indices.indexOf(question.answer);
+                
+                // Update the question with shuffled options and new answer
+                randomizedQuestion.options = shuffledOptions;
+                randomizedQuestion.answer = newAnswerIndex;
+                
+                randomizedData.push(randomizedQuestion);
+            });
+            
+            return randomizedData;
+        }
+
+        // Create randomized quiz data
+        let quizData = createRandomizedQuizData();
+
+        // Quiz state variables
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let incorrectQuestions = [];
+
+        // DOM elements
+        const quizContainer = document.getElementById('quiz-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const scoreEl = document.getElementById('score');
+        const totalScoreEl = document.getElementById('total-score');
+        const resultsContainer = document.getElementById('results');
+        const finalScoreEl = document.getElementById('final-score');
+        const performanceMessageEl = document.getElementById('performance-message');
+        const restartBtn = document.getElementById('restart-btn');
+        const reviewBtn = document.getElementById('review-btn');
+        const reviewSection = document.getElementById('review-section');
+        const incorrectQuestionsList = document.getElementById('incorrect-questions-list');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const lightText = document.querySelector('.light-text');
+        const darkText = document.querySelector('.dark-text');
+
+        // Initialize quiz
+        function initQuiz() {
+            totalQuestionsEl.textContent = quizData.length;
+            totalScoreEl.textContent = quizData.length;
+            showQuestion();
+            updateProgressBar();
+            
+            // Initialize dark mode based on system preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+                updateToggleText(true);
+            } else {
+                updateToggleText(false);
+            }
+            
+            // Event listeners
+            prevBtn.addEventListener('click', showPreviousQuestion);
+            nextBtn.addEventListener('click', showNextQuestion);
+            restartBtn.addEventListener('click', restartQuiz);
+            reviewBtn.addEventListener('click', showIncorrectQuestions);
+            darkModeToggle.addEventListener('change', toggleDarkMode);
+        }
+
+        // Toggle dark mode
+        function toggleDarkMode() {
+            const isDarkMode = darkModeToggle.checked;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            updateToggleText(isDarkMode);
+        }
+
+        // Update toggle text opacity
+        function updateToggleText(isDarkMode) {
+            if (isDarkMode) {
+                lightText.style.opacity = '0.5';
+                darkText.style.opacity = '1';
+            } else {
+                lightText.style.opacity = '1';
+                darkText.style.opacity = '0.5';
+            }
+        }
+
+        // Show current question
+        function showQuestion() {
+            currentQuestionEl.textContent = currentQuestion + 1;
+            scoreEl.textContent = score;
+            
+            const question = quizData[currentQuestion];
+            let optionsHTML = '';
+            
+            question.options.forEach((option, index) => {
+                let optionClass = 'option';
+                if (userAnswers[currentQuestion] === index) {
+                    optionClass += ' selected';
+                    if (index === question.answer) {
+                        optionClass += ' correct';
+                    } else {
+                        optionClass += ' incorrect';
+                    }
+                }
+                
+                optionsHTML += `
+                    <div class="${optionClass}" data-index="${index}">
+                        ${String.fromCharCode(65 + index)}) ${option}
+                    </div>
+                `;
+            });
+            
+            let feedbackHTML = '';
+            if (userAnswers[currentQuestion] !== null) {
+                const isCorrect = userAnswers[currentQuestion] === question.answer;
+                const correctLetter = String.fromCharCode(65 + question.answer);
+                const correctAnswerText = question.options[question.answer];
+                
+                feedbackHTML = `
+                    <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
+                        ${isCorrect ? '✓ Correct!' : '✗ Incorrect!'} 
+                        ${!isCorrect ? `Correct answer: ${correctLetter}) ${correctAnswerText}` : ''}
+                        <br><br>Explanation: ${question.explanation}
+                    </div>
+                `;
+            }
+            
+            quizContainer.innerHTML = `
+                <div class="question">
+                    <div class="question-number">Question ${currentQuestion + 1}/${quizData.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">${optionsHTML}</div>
+                    ${feedbackHTML}
+                </div>
+            `;
+            
+            // Add event listeners to options
+            const optionElements = quizContainer.querySelectorAll('.option');
+            optionElements.forEach(option => {
+                option.addEventListener('click', selectOption);
+            });
+            
+            // Update navigation buttons
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.textContent = currentQuestion === quizData.length - 1 ? 'Finish Quiz' : 'Next';
+        }
+
+        // Select an option
+        function selectOption(e) {
+            if (userAnswers[currentQuestion] !== null) return; // Already answered
+            
+            const selectedOption = e.currentTarget;
+            const selectedIndex = parseInt(selectedOption.dataset.index);
+            
+            userAnswers[currentQuestion] = selectedIndex;
+            
+            // Check if answer is correct
+            if (selectedIndex === quizData[currentQuestion].answer) {
+                score++;
+                scoreEl.textContent = score;
+            } else {
+                // Add to incorrect questions list
+                incorrectQuestions.push({
+                    question: quizData[currentQuestion].question,
+                    userAnswer: selectedIndex,
+                    correctAnswer: quizData[currentQuestion].answer,
+                    options: quizData[currentQuestion].options,
+                    explanation: quizData[currentQuestion].explanation,
+                    questionNumber: currentQuestion + 1
+                });
+            }
+            
+            showQuestion();
+            updateProgressBar();
+        }
+
+        // Show next question
+        function showNextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Show previous question
+        function showPreviousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Show results
+        function showResults() {
+            quizContainer.style.display = 'none';
+            document.querySelector('.navigation').style.display = 'none';
+            document.querySelector('.progress-container').style.display = 'none';
+            document.querySelector('.stats').style.display = 'none';
+            
+            finalScoreEl.textContent = score;
+            
+            // Performance message
+            const percentage = (score / quizData.length) * 100;
+            let message = '';
+            if (percentage >= 80) {
+                message = 'Excellent! You have a strong understanding of Laser Therapy.';
+            } else if (percentage >= 60) {
+                message = 'Good job! You have a solid grasp of the material.';
+            } else if (percentage >= 40) {
+                message = 'Not bad! Review the material and try again.';
+            } else {
+                message = 'Keep studying! Review the lectures and try again.';
+            }
+            
+            performanceMessageEl.textContent = message;
+            resultsContainer.style.display = 'block';
+            
+            // Show review button only if there are incorrect answers
+            if (incorrectQuestions.length > 0) {
+                reviewBtn.style.display = 'inline-block';
+            } else {
+                reviewBtn.style.display = 'none';
+            }
+        }
+
+        // Show incorrect questions
+        function showIncorrectQuestions() {
+            resultsContainer.style.display = 'none';
+            reviewSection.style.display = 'block';
+            
+            let incorrectHTML = '';
+            incorrectQuestions.forEach((item, index) => {
+                const correctLetter = String.fromCharCode(65 + item.correctAnswer);
+                const userLetter = String.fromCharCode(65 + item.userAnswer);
+                
+                incorrectHTML += `
+                    <div class="review-question">
+                        <div class="review-question-number">Question ${item.questionNumber}</div>
+                        <div class="review-question-text">${item.question}</div>
+                        <div>Your answer: ${userLetter}) ${item.options[item.userAnswer]}</div>
+                        <div class="review-answer review-correct">Correct answer: ${correctLetter}) ${item.options[item.correctAnswer]}</div>
+                        <div class="review-explanation">${item.explanation}</div>
+                    </div>
+                `;
+            });
+            
+            incorrectQuestionsList.innerHTML = incorrectHTML;
+        }
+
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            incorrectQuestions = [];
+            
+            // Re-randomize the quiz data when restarting
+            quizData = createRandomizedQuizData();
+            
+            quizContainer.style.display = 'block';
+            document.querySelector('.navigation').style.display = 'flex';
+            document.querySelector('.progress-container').style.display = 'block';
+            document.querySelector('.stats').style.display = 'flex';
+            resultsContainer.style.display = 'none';
+            reviewSection.style.display = 'none';
+            
+            showQuestion();
+            updateProgressBar();
+        }
+
+        // Initialize the quiz when the page loads
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
