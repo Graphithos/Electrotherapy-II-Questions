@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQs on TECAR Therapy Quiz</title>
+    <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --container-bg: white;
+            --text-color: #333;
+            --border-color: #ddd;
+            --primary-color: #3498db;
+            --header-color: #2c3e50;
+            --secondary-text: #7f8c8d;
+            --progress-bg: #ecf0f1;
+            --question-bg: #f8f9fa;
+            --option-bg: #fff;
+            --option-hover: #f1f8ff;
+            --option-selected: #d1ecf1;
+            --correct-bg: #d4edda;
+            --correct-border: #28a745;
+            --incorrect-bg: #f8d7da;
+            --incorrect-border: #dc3545;
+            --button-bg: #3498db;
+            --button-hover: #2980b9;
+            --button-disabled: #bdc3c7;
+            --restart-bg: #2ecc71;
+            --restart-hover: #27ae60;
+            --review-bg: #f39c12;
+            --review-hover: #e67e22;
+            --toggle-bg: #ecf0f1;
+            --toggle-slider: white;
+            --toggle-text: #7f8c8d;
+        }
+
+        .dark-mode {
+            --bg-color: #1a1a2e;
+            --container-bg: #16213e;
+            --text-color: #e6e6e6;
+            --border-color: #394867;
+            --primary-color: #4cc9f0;
+            --header-color: #e6e6e6;
+            --secondary-text: #a9a9a9;
+            --progress-bg: #394867;
+            --question-bg: #1f4068;
+            --option-bg: #16213e;
+            --option-hover: #1f4068;
+            --option-selected: #1f4068;
+            --correct-bg: #2d5a2d;
+            --correct-border: #4caf50;
+            --incorrect-bg: #5a2d2d;
+            --incorrect-border: #f44336;
+            --button-bg: #4cc9f0;
+            --button-hover: #3aa8d0;
+            --button-disabled: #5d6d7e;
+            --restart-bg: #2ecc71;
+            --restart-hover: #27ae60;
+            --review-bg: #f39c12;
+            --review-hover: #e67e22;
+            --toggle-bg: #394867;
+            --toggle-slider: #4cc9f0;
+            --toggle-text: #e6e6e6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--container-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            position: relative;
+        }
+        h1 {
+            color: var(--header-color);
+            margin-bottom: 5px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        .author {
+            color: var(--secondary-text);
+            font-style: italic;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .description {
+            color: var(--secondary-text);
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 35px;
+            right: 0;
+            display: flex;
+            align-items: center;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 120px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--toggle-bg);
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--toggle-text);
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 60px;
+            left: 4px;
+            bottom: 4px;
+            background-color: var(--toggle-slider);
+            transition: .4s;
+            border-radius: 34px;
+            z-index: 1;
+        }
+        .slider-text {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .light-text, .dark-text {
+            transition: opacity 0.3s;
+        }
+        .dark-mode .light-text {
+            opacity: 0.5;
+        }
+        .light-text {
+            opacity: 0.5;
+        }
+        .dark-mode .dark-text {
+            opacity: 1;
+        }
+        .dark-text {
+            opacity: 0.5;
+        }
+        input:checked + .slider:before {
+            transform: translateX(52px);
+        }
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+            height: 10px;
+            transition: background-color 0.3s;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--header-color);
+            transition: color 0.3s;
+        }
+        .question {
+            background: var(--question-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: background-color 0.3s;
+        }
+        .question-number {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .options {
+            display: grid;
+            grid-gap: 10px;
+        }
+        .option {
+            padding: 12px 15px;
+            background: var(--option-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option:hover {
+            background: var(--option-hover);
+            border-color: var(--primary-color);
+        }
+        .option.selected {
+            background: var(--option-selected);
+            border-color: var(--primary-color);
+        }
+        .option.correct {
+            background: var(--correct-bg);
+            border-color: var(--correct-border);
+        }
+        .option.incorrect {
+            background: var(--incorrect-bg);
+            border-color: var(--incorrect-border);
+        }
+        .feedback {
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+        .feedback.correct {
+            background: var(--correct-bg);
+            color: var(--text-color);
+            border: 1px solid var(--correct-border);
+            display: block;
+        }
+        .feedback.incorrect {
+            background: var(--incorrect-bg);
+            color: var(--text-color);
+            border: 1px solid var(--incorrect-border);
+            display: block;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            background: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: var(--button-hover);
+        }
+        button:disabled {
+            background: var(--button-disabled);
+            cursor: not-allowed;
+        }
+        .results {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        .score {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--header-color);
+        }
+        .score-value {
+            font-size: 48px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .restart-btn {
+            margin-top: 20px;
+            background: var(--restart-bg);
+        }
+        .restart-btn:hover {
+            background: var(--restart-hover);
+        }
+        .review-btn {
+            margin-top: 20px;
+            background: var(--review-bg);
+        }
+        .review-btn:hover {
+            background: var(--review-hover);
+        }
+        .review-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--question-bg);
+            border-radius: 8px;
+            display: none;
+        }
+        .review-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--header-color);
+            text-align: center;
+        }
+        .review-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 4px solid var(--incorrect-border);
+            background: var(--container-bg);
+            border-radius: 4px;
+        }
+        .review-question-number {
+            font-weight: bold;
+            color: var(--incorrect-border);
+            margin-bottom: 8px;
+        }
+        .review-question-text {
+            margin-bottom: 10px;
+        }
+        .review-answer {
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        .review-correct {
+            color: var(--correct-border);
+        }
+        .review-explanation {
+            margin-top: 5px;
+            font-style: italic;
+            color: var(--secondary-text);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MCQs on TECAR Therapy Quiz</h1>
+            <p class="author">Dr. Samy Salem</p>
+            <p class="description">Test your knowledge of TECAR Therapy: principles, modes, applications, and clinical protocols</p>
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <span class="slider">
+                        <div class="slider-text">
+                            <span class="light-text">Light</span>
+                            <span class="dark-text">Dark</span>
+                        </div>
+                    </span>
+                </label>
+            </div>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <div class="stats">
+            <div>Question: <span id="current-question">1</span>/<span id="total-questions">35</span></div>
+            <div>Score: <span id="score">0</span>/<span id="total-score">35</span></div>
+        </div>
+
+        <div id="quiz-container">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+
+        <div class="navigation">
+            <button id="prev-btn" disabled>Previous</button>
+            <button id="next-btn">Next</button>
+        </div>
+
+        <div id="results" class="results">
+            <div class="score">Your Score: <span class="score-value" id="final-score">0</span>/35</div>
+            <p id="performance-message"></p>
+            <button class="restart-btn" id="restart-btn">Restart Quiz</button>
+            <button class="review-btn" id="review-btn">Review Incorrect Answers</button>
+        </div>
+
+        <div id="review-section" class="review-section">
+            <h2 class="review-title">Questions Answered Incorrectly</h2>
+            <div id="incorrect-questions-list"></div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz data from TECAR DOCX (extracted from 7. TECAR (MCQs).docx)
+        const originalQuizData = [
+            {
+                question: "TECAR therapy typically uses high-frequency radiofrequency currents in which range?",
+                options: [
+                    "100 kHz -- 200 kHz",
+                    "200 kHz -- 300 kHz",
+                    "300 kHz -- 1.2 MHz",
+                    "1.5 MHz -- 3 MHz"
+                ],
+                answer: 2,
+                explanation: "Page 3"
+            },
+            {
+                question: "In Capacitive mode (CET), the active electrode is coated with what type of material?",
+                options: [
+                    "Bare metal",
+                    "Gold plating",
+                    "Copper wire mesh",
+                    "Insulating (dielectric) material such as ceramic"
+                ],
+                answer: 3,
+                explanation: "Page 5"
+            },
+            {
+                question: "In the Capacitive mode, the tissue acts as what component of the capacitor principle?",
+                options: [
+                    "The first plate",
+                    "The second plate",
+                    "The dielectric medium",
+                    "The conductor wire"
+                ],
+                answer: 2,
+                explanation: "Page 5"
+            },
+            {
+                question: "The endogenous heat produced in Capacitive mode is explained by which physical law?",
+                options: [
+                    "Joule's Law",
+                    "Ohm's Law",
+                    "Newton's Law of Cooling",
+                    "Hooke's Law"
+                ],
+                answer: 0,
+                explanation: "Page 7"
+            },
+            {
+                question: "Capacitive mode specifically targets soft tissues with high water and salt content. Which of the following is a primary target?",
+                options: [
+                    "Lymphatic system",
+                    "Bone",
+                    "Tendon",
+                    "Ligament"
+                ],
+                answer: 0,
+                explanation: "Page 8"
+            },
+            {
+                question: "Which of the following is a primary physiological effect of Capacitive mode?",
+                options: [
+                    "Fibrolysis",
+                    "Deep vasodilation and increased blood flow",
+                    "Collagen fiber shrinkage",
+                    "Bone remodeling"
+                ],
+                answer: 1,
+                explanation: "Page 9"
+            },
+            {
+                question: "In Resistive mode (RET), the active electrode is described as which of the following?",
+                options: [
+                    "Coated with ceramic",
+                    "Not insulated (a bare metallic conductor)",
+                    "A large return plate",
+                    "A suction cup"
+                ],
+                answer: 1,
+                explanation: "Page 10"
+            },
+            {
+                question: "Resistive mode concentrates energy in which type of tissues?",
+                options: [
+                    "High water content tissues",
+                    "Low resistance tissues",
+                    "Dense tissues with high electrical resistance",
+                    "Blood vessels"
+                ],
+                answer: 2,
+                explanation: "Page 10"
+            },
+            {
+                question: "Which therapeutic effect is specifically attributed to Resistive mode?",
+                options: [
+                    "Lymphatic drainage",
+                    "Edema reduction",
+                    "Fibrolysis and breaking down chronic fibrotic tissue",
+                    "Superficial skin tightening"
+                ],
+                answer: 2,
+                explanation: "Page 13"
+            },
+            {
+                question: "TECAR therapy restores the natural electrical potential of cell membranes by optimizing which pump?",
+                options: [
+                    "Sodium-Potassium (Na+/K+) pump",
+                    "Calcium pump",
+                    "Proton pump",
+                    "Magnesium pump"
+                ],
+                answer: 0,
+                explanation: "Page 15"
+            },
+            {
+                question: "Unlike ultrasound, TECAR therapy can be used safely over which of the following?",
+                options: [
+                    "Open wounds",
+                    "The eyes",
+                    "Metal implants (prostheses, plates, or screws)",
+                    "Pacemaker and electronic implants"
+                ],
+                answer: 2,
+                explanation: "Page 16"
+            },
+            {
+                question: "One of the greatest advantages of TECAR therapy is that it allows the therapist to do what during energy delivery?",
+                options: [
+                    "Leave the patient unattended",
+                    "Perform manual techniques (massages, mobilizations, or stretching)",
+                    "Apply ice simultaneously",
+                    "Use high-intensity laser"
+                ],
+                answer: 1,
+                explanation: "Page 17"
+            },
+            {
+                question: "Which of the following is an absolute contraindication for TECAR therapy?",
+                options: [
+                    "Muscle strains",
+                    "Tendinopathies",
+                    "Pacemakers or other electronic implants",
+                    "Low back pain"
+                ],
+                answer: 2,
+                explanation: "Page 19"
+            },
+            {
+                question: "Pregnancy is classified as what type of contraindication for TECAR therapy?",
+                options: [
+                    "Relative precaution",
+                    "Absolute contraindication",
+                    "No contraindication",
+                    "Only in the third trimester"
+                ],
+                answer: 1,
+                explanation: "Page 19"
+            },
+            {
+                question: "Which of the following is considered a relative precaution for TECAR therapy?",
+                options: [
+                    "Decreased skin sensation",
+                    "Active cancer",
+                    "Thrombosis",
+                    "Acute infection"
+                ],
+                answer: 0,
+                explanation: "Page 19"
+            },
+            {
+                question: "In the mobile application method of TECAR, how is the active electrode moved?",
+                options: [
+                    "Held stationary",
+                    "In circular or longitudinal strokes",
+                    "Tapped against the skin",
+                    "Only in one direction"
+                ],
+                answer: 1,
+                explanation: "Page 24"
+            },
+            {
+                question: "In opposite geometry (dual-sided placement), where are the active electrode and neutral plate placed?",
+                options: [
+                    "On the same side of the body part",
+                    "On opposite sides of the body part",
+                    "Both on the back",
+                    "Only on the extremities"
+                ],
+                answer: 1,
+                explanation: "Page 25"
+            },
+            {
+                question: "Opposite geometry is ideal for targeting which type of tissues?",
+                options: [
+                    "Deep tissues and joint centers",
+                    "Superficial muscles only",
+                    "Skin only",
+                    "Lymphatic vessels only"
+                ],
+                answer: 0,
+                explanation: "Page 25"
+            },
+            {
+                question: "Complanar geometry places both the active electrode and neutral plate in which position?",
+                options: [
+                    "On opposite sides of the body",
+                    "On the same side or plane of the body",
+                    "Under the patient",
+                    "Only on the head"
+                ],
+                answer: 1,
+                explanation: "Page 25"
+            },
+            {
+                question: "Grade 1 (Non-Thermal/Athermal) intensity in TECAR therapy is indicated for which condition?",
+                options: [
+                    "Chronic fibrosis",
+                    "Joint stiffness",
+                    "Acute injuries, early post-op, and edema reduction",
+                    "Deep muscle contractures"
+                ],
+                answer: 2,
+                explanation: "Page 27"
+            },
+            {
+                question: "Grade 3 (Intense Thermal/Hyperthermia) intensity is indicated for which condition?",
+                options: [
+                    "Acute injuries",
+                    "Early post-op edema",
+                    "Chronic fibrosis, joint stiffness, and deep muscle contractures",
+                    "Sub-acute phases"
+                ],
+                answer: 2,
+                explanation: "Page 27"
+            },
+            {
+                question: "What determines the depth and path of the current in TECAR therapy?",
+                options: [
+                    "The position of the neutral plate",
+                    "The patient's age",
+                    "The room temperature",
+                    "The color of the electrode"
+                ],
+                answer: 0,
+                explanation: "Page 28"
+            },
+            {
+                question: "Which frequency is considered the gold standard for cell membrane polarization in TECAR therapy?",
+                options: [
+                    "300 kHz",
+                    "448 kHz",
+                    "750 kHz",
+                    "1.2 MHz"
+                ],
+                answer: 1,
+                explanation: "Page 29"
+            },
+            {
+                question: "What is the rule regarding penetration depth and frequency in TECAR therapy?",
+                options: [
+                    "The higher the frequency, the deeper it goes",
+                    "Frequency does not affect penetration depth",
+                    "Penetration depth is only determined by power",
+                    "The lower the frequency, the deeper it goes"
+                ],
+                answer: 3,
+                explanation: "Page 30"
+            },
+            {
+                question: "A typical TECAR session lasts how long, according to standard protocols?",
+                options: [
+                    "5-10 minutes",
+                    "15-30 minutes",
+                    "45-60 minutes",
+                    "60-90 minutes"
+                ],
+                answer: 1,
+                explanation: "Page 31"
+            },
+            {
+                question: "In a standard TECAR protocol sequence, Phase 1 uses Capacitive mode (CET) for what purpose?",
+                options: [
+                    "Deep fibrolysis",
+                    "To prep the area and stimulate lymphatic drainage",
+                    "To treat bone fractures",
+                    "To increase collagen fiber tension"
+                ],
+                answer: 1,
+                explanation: "Page 31"
+            },
+            {
+                question: "To prevent 'hot spots' and burns during TECAR therapy, what type of electrode motion should always be used?",
+                options: [
+                    "Static hold at high power",
+                    "Intermittent tapping",
+                    "Continuous dynamic motion (circular or longitudinal)",
+                    "Rapid vibration only"
+                ],
+                answer: 2,
+                explanation: "Page 32"
+            },
+            {
+                question: "During TECAR application, the patient should feel what sensation?",
+                options: [
+                    "Sharp stinging",
+                    "Comfortable warmth",
+                    "No sensation at all",
+                    "Coldness"
+                ],
+                answer: 1,
+                explanation: "Page 32"
+            },
+            {
+                question: "In the wound protocol for TECAR therapy, which phase uses the Resistive mode (RES) at medium/high intensity for scar remodeling?",
+                options: [
+                    "Phase 1 (Acute/Inflammatory)",
+                    "Phase 2 (Proliferative)",
+                    "Phase 3 (Remodeling)",
+                    "All phases equally"
+                ],
+                answer: 2,
+                explanation: "Page 36"
+            },
+            {
+                question: "In Phase 1 (Acute/Inflammatory) of the wound protocol, what approach is used?",
+                options: [
+                    "Intense thermal",
+                    "Sub-thermal",
+                    "Resistive mode only",
+                    "Athermal approach using Capacitive mode at low intensity"
+                ],
+                answer: 3,
+                explanation: "Page 36"
+            },
+            {
+                question: "In monopolar application, how many separate electrodes are required?",
+                options: [
+                    "One",
+                    "Two",
+                    "Three",
+                    "None"
+                ],
+                answer: 1,
+                explanation: "Page 38"
+            },
+            {
+                question: "Monopolar application allows the energy to reach which type of structures?",
+                options: [
+                    "Superficial skin only",
+                    "Deep structures like the hip joint, lower back, or deep bone layers",
+                    "Only the epidermis",
+                    "Only muscle bellies"
+                ],
+                answer: 1,
+                explanation: "Page 38"
+            },
+            {
+                question: "Bipolar application is best suited for which type of treatment?",
+                options: [
+                    "Superficial focus such as aesthetics, skin tightening, and scar treatment",
+                    "Deep joint pathologies",
+                    "Deep muscle tears",
+                    "Chronic ligament issues"
+                ],
+                answer: 0,
+                explanation: "Page 40"
+            },
+            {
+                question: "In bipolar application, does the current travel deep into the body, and is a return plate required?",
+                options: [
+                    "Yes, it travels deep and requires a return plate",
+                    "No, it does not travel deep into the body and does not require a return plate",
+                    "It travels deep but does not require a return plate",
+                    "It does not travel deep but requires a return plate"
+                ],
+                answer: 1,
+                explanation: "Page 40"
+            },
+            {
+                question: "What is the primary mechanism of action for both Capacitive and Resistive modes in producing heat?",
+                options: [
+                    "Absorption of external heat",
+                    "Conduction from a heated electrode",
+                    "Radiation from an infrared source",
+                    "High-frequency ionic oscillation causing molecular friction"
+                ],
+                answer: 3,
+                explanation: "Page 6"
+            }
+        ];
+
+        // Function to shuffle an array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Function to create a randomized version of the quiz data
+        function createRandomizedQuizData() {
+            const randomizedData = [];
+            
+            originalQuizData.forEach(question => {
+                // Create a copy of the original question
+                const randomizedQuestion = {
+                    question: question.question,
+                    options: [...question.options], // Copy options array
+                    originalAnswer: question.answer, // Store original answer index
+                    explanation: question.explanation
+                };
+                
+                // Create an array of indices [0, 1, 2, 3]
+                const indices = [0, 1, 2, 3];
+                
+                // Shuffle the indices
+                shuffleArray(indices);
+                
+                // Create a new options array with shuffled order
+                const shuffledOptions = indices.map(index => question.options[index]);
+                
+                // Find the new position of the correct answer
+                const newAnswerIndex = indices.indexOf(question.answer);
+                
+                // Update the question with shuffled options and new answer
+                randomizedQuestion.options = shuffledOptions;
+                randomizedQuestion.answer = newAnswerIndex;
+                
+                randomizedData.push(randomizedQuestion);
+            });
+            
+            return randomizedData;
+        }
+
+        // Create randomized quiz data
+        let quizData = createRandomizedQuizData();
+
+        // Quiz state variables
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let incorrectQuestions = [];
+
+        // DOM elements
+        const quizContainer = document.getElementById('quiz-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const scoreEl = document.getElementById('score');
+        const totalScoreEl = document.getElementById('total-score');
+        const resultsContainer = document.getElementById('results');
+        const finalScoreEl = document.getElementById('final-score');
+        const performanceMessageEl = document.getElementById('performance-message');
+        const restartBtn = document.getElementById('restart-btn');
+        const reviewBtn = document.getElementById('review-btn');
+        const reviewSection = document.getElementById('review-section');
+        const incorrectQuestionsList = document.getElementById('incorrect-questions-list');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const lightText = document.querySelector('.light-text');
+        const darkText = document.querySelector('.dark-text');
+
+        // Initialize quiz
+        function initQuiz() {
+            totalQuestionsEl.textContent = quizData.length;
+            totalScoreEl.textContent = quizData.length;
+            showQuestion();
+            updateProgressBar();
+            
+            // Initialize dark mode based on system preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+                updateToggleText(true);
+            } else {
+                updateToggleText(false);
+            }
+            
+            // Event listeners
+            prevBtn.addEventListener('click', showPreviousQuestion);
+            nextBtn.addEventListener('click', showNextQuestion);
+            restartBtn.addEventListener('click', restartQuiz);
+            reviewBtn.addEventListener('click', showIncorrectQuestions);
+            darkModeToggle.addEventListener('change', toggleDarkMode);
+        }
+
+        // Toggle dark mode
+        function toggleDarkMode() {
+            const isDarkMode = darkModeToggle.checked;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            updateToggleText(isDarkMode);
+        }
+
+        // Update toggle text opacity
+        function updateToggleText(isDarkMode) {
+            if (isDarkMode) {
+                lightText.style.opacity = '0.5';
+                darkText.style.opacity = '1';
+            } else {
+                lightText.style.opacity = '1';
+                darkText.style.opacity = '0.5';
+            }
+        }
+
+        // Show current question
+        function showQuestion() {
+            currentQuestionEl.textContent = currentQuestion + 1;
+            scoreEl.textContent = score;
+            
+            const question = quizData[currentQuestion];
+            let optionsHTML = '';
+            
+            question.options.forEach((option, index) => {
+                let optionClass = 'option';
+                if (userAnswers[currentQuestion] === index) {
+                    optionClass += ' selected';
+                    if (index === question.answer) {
+                        optionClass += ' correct';
+                    } else {
+                        optionClass += ' incorrect';
+                    }
+                }
+                
+                optionsHTML += `
+                    <div class="${optionClass}" data-index="${index}">
+                        ${String.fromCharCode(65 + index)}) ${option}
+                    </div>
+                `;
+            });
+            
+            let feedbackHTML = '';
+            if (userAnswers[currentQuestion] !== null) {
+                const isCorrect = userAnswers[currentQuestion] === question.answer;
+                const correctLetter = String.fromCharCode(65 + question.answer);
+                const correctAnswerText = question.options[question.answer];
+                
+                feedbackHTML = `
+                    <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
+                        ${isCorrect ? '✓ Correct!' : '✗ Incorrect!'} 
+                        ${!isCorrect ? `Correct answer: ${correctLetter}) ${correctAnswerText}` : ''}
+                        <br><br>Explanation: ${question.explanation}
+                    </div>
+                `;
+            }
+            
+            quizContainer.innerHTML = `
+                <div class="question">
+                    <div class="question-number">Question ${currentQuestion + 1}/${quizData.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">${optionsHTML}</div>
+                    ${feedbackHTML}
+                </div>
+            `;
+            
+            // Add event listeners to options
+            const optionElements = quizContainer.querySelectorAll('.option');
+            optionElements.forEach(option => {
+                option.addEventListener('click', selectOption);
+            });
+            
+            // Update navigation buttons
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.textContent = currentQuestion === quizData.length - 1 ? 'Finish Quiz' : 'Next';
+        }
+
+        // Select an option
+        function selectOption(e) {
+            if (userAnswers[currentQuestion] !== null) return; // Already answered
+            
+            const selectedOption = e.currentTarget;
+            const selectedIndex = parseInt(selectedOption.dataset.index);
+            
+            userAnswers[currentQuestion] = selectedIndex;
+            
+            // Check if answer is correct
+            if (selectedIndex === quizData[currentQuestion].answer) {
+                score++;
+                scoreEl.textContent = score;
+            } else {
+                // Add to incorrect questions list
+                incorrectQuestions.push({
+                    question: quizData[currentQuestion].question,
+                    userAnswer: selectedIndex,
+                    correctAnswer: quizData[currentQuestion].answer,
+                    options: quizData[currentQuestion].options,
+                    explanation: quizData[currentQuestion].explanation,
+                    questionNumber: currentQuestion + 1
+                });
+            }
+            
+            showQuestion();
+            updateProgressBar();
+        }
+
+        // Show next question
+        function showNextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Show previous question
+        function showPreviousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Show results
+        function showResults() {
+            quizContainer.style.display = 'none';
+            document.querySelector('.navigation').style.display = 'none';
+            document.querySelector('.progress-container').style.display = 'none';
+            document.querySelector('.stats').style.display = 'none';
+            
+            finalScoreEl.textContent = score;
+            
+            // Performance message
+            const percentage = (score / quizData.length) * 100;
+            let message = '';
+            if (percentage >= 80) {
+                message = 'Excellent! You have a strong understanding of TECAR Therapy.';
+            } else if (percentage >= 60) {
+                message = 'Good job! You have a solid grasp of the material.';
+            } else if (percentage >= 40) {
+                message = 'Not bad! Review the material and try again.';
+            } else {
+                message = 'Keep studying! Review the lectures and try again.';
+            }
+            
+            performanceMessageEl.textContent = message;
+            resultsContainer.style.display = 'block';
+            
+            // Show review button only if there are incorrect answers
+            if (incorrectQuestions.length > 0) {
+                reviewBtn.style.display = 'inline-block';
+            } else {
+                reviewBtn.style.display = 'none';
+            }
+        }
+
+        // Show incorrect questions
+        function showIncorrectQuestions() {
+            resultsContainer.style.display = 'none';
+            reviewSection.style.display = 'block';
+            
+            let incorrectHTML = '';
+            incorrectQuestions.forEach((item, index) => {
+                const correctLetter = String.fromCharCode(65 + item.correctAnswer);
+                const userLetter = String.fromCharCode(65 + item.userAnswer);
+                
+                incorrectHTML += `
+                    <div class="review-question">
+                        <div class="review-question-number">Question ${item.questionNumber}</div>
+                        <div class="review-question-text">${item.question}</div>
+                        <div>Your answer: ${userLetter}) ${item.options[item.userAnswer]}</div>
+                        <div class="review-answer review-correct">Correct answer: ${correctLetter}) ${item.options[item.correctAnswer]}</div>
+                        <div class="review-explanation">${item.explanation}</div>
+                    </div>
+                `;
+            });
+            
+            incorrectQuestionsList.innerHTML = incorrectHTML;
+        }
+
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            incorrectQuestions = [];
+            
+            // Re-randomize the quiz data when restarting
+            quizData = createRandomizedQuizData();
+            
+            quizContainer.style.display = 'block';
+            document.querySelector('.navigation').style.display = 'flex';
+            document.querySelector('.progress-container').style.display = 'block';
+            document.querySelector('.stats').style.display = 'flex';
+            resultsContainer.style.display = 'none';
+            reviewSection.style.display = 'none';
+            
+            showQuestion();
+            updateProgressBar();
+        }
+
+        // Initialize the quiz when the page loads
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
